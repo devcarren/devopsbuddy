@@ -8,15 +8,47 @@
 
 <div th:replace="common/navbar :: common-navbar" />
 
-<div class="container">
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6 col-md-offset-3">
+             <div class="well">
+                 <div class="text-center">
+                      <h1 th:text="#{contact.h1.text}"></h1>
+                     <p class="lead" th:text="#{contact.p.lead}"></p>
 
-    <div class="starter-template">
-        <h1 th:text="#{index.main.callout}">Main Callout Here</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br/> All you get is this text and a
-            mostly barebones HTML document.</p>
-    </div>
+                     <form id="contactForm" th:action="@{/contact/}"
+                           th:object="${feedback}" method="post" class="text-left">
 
-</div><!-- /.container -->
+                         <div class="form-group">
+                             <label for="email" th:text="#{form.email}"></label>
+                             <input type="email" id="email" th:field="*{email}" class="form-control" />
+                         </div>
+
+                         <div class="form-group">
+                             <label for="firstName" th:text="#{form.firstName}"></label>
+                             <input type="text" id="firstName" th:field="*{firstName}" class="form-control" />
+                         </div>
+
+                         <div class="form-group">
+                             <label for="lastName" th:text="#{form.lastName}"></label>
+                             <input type="text" id="lastName" th:field="*{lastName}" class="form-control" />
+                         </div>
+
+                         <div class="form-group">
+                             <label for="feedback" th:text="#{form.feedback}"></label>
+                             <textarea type="text" id="feedback" th:field="*{feedback}" class="form-control" />
+                         </div>
+
+                         <div class="form-group">
+                             <button type="submit" class="btn btn-primary" th:text="#{form.submit}"></button>
+                         </div>
+
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
