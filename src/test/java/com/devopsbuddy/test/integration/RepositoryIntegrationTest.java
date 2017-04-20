@@ -7,6 +7,8 @@ import com.devopsbuddy.backend.persistence.domain.backend.UserRole;
 import com.devopsbuddy.backend.persistence.repositories.PlanRepository;
 import com.devopsbuddy.backend.persistence.repositories.RoleRepository;
 import com.devopsbuddy.backend.persistence.repositories.UserRepository;
+import com.devopsbuddy.enums.PlanEnum;
+import com.devopsbuddy.enums.RolesEnum;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,43 +46,39 @@ public class RepositoryIntegrationTest {
 
     @Test
     public void testCreateNewPlan() throws Exception{
-        Plan basic =createBasicPlan();
+        Plan basic =createBasicPlan(PlanEnum.BASIC);
         planRepository.save(basic);
         Plan retrievePlan = planRepository.findOne(1);
         Assert.assertNotNull(retrievePlan);
     }
 
-    private Plan createBasicPlan() {
-        Plan plan = new Plan();
-        plan.setId(1);
-        plan.setName("Simple Plan");
-        return plan;
+    private Plan createBasicPlan(PlanEnum planEnum) {
+
+        return new Plan(PlanEnum.BASIC);
     }
 
     @Test
     public void testCreateNewRole() throws Exception{
-        Role basic =createBasicRole();
+        Role basic =createBasicRole(RolesEnum.Basic);
         roleRepository.save(basic);
-        Role retrieveRole = roleRepository.findOne(1);
+        Role retrieveRole = roleRepository.findOne(RolesEnum.Basic.getId());
         Assert.assertNotNull(retrieveRole);
     }
 
-    private Role createBasicRole() {
-        Role role = new Role();
-        role.setName("USER_ROLE");
-        role.setId(1);
-        return role;
+    private Role createBasicRole(RolesEnum rolesEnum) {
+
+        return new Role(rolesEnum);
     }
 
     @Test
     public void testCreateUser() throws  Exception{
-        Plan basicPlan = createBasicPlan();
+        Plan basicPlan = createBasicPlan(PlanEnum.BASIC);
         planRepository.save(basicPlan);
 
         User basicUser = createBasicUser();
         basicUser.setPlan(basicPlan);
 
-        Role basicRole = createBasicRole();
+        Role basicRole = createBasicRole(RolesEnum.Basic);
         Set<UserRole> userRoles = new HashSet<>();
         UserRole userRole = new UserRole();
         userRole.setUser(basicUser);

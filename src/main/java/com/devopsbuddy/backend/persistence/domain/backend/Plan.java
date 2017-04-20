@@ -1,5 +1,7 @@
 package com.devopsbuddy.backend.persistence.domain.backend;
 
+import com.devopsbuddy.enums.PlanEnum;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -35,6 +37,12 @@ public class Plan implements Serializable {
 
     }
 
+
+    public Plan(PlanEnum planEnum){
+         this.id = planEnum.getId();
+         this.name = planEnum.getPlanName();
+
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
