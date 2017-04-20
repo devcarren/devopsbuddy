@@ -5,9 +5,9 @@ import com.devopsbuddy.backend.persistence.domain.backend.User;
 /**
  * Created by Carren.Dsouza on 20/04/2017.
  */
-public class UsersUtils {
+public class UserUtils {
 
-    private UsersUtils(){}
+    private UserUtils(){}
 
     public static User createBasicUser(){
         User user = new User();

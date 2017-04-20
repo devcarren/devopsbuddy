@@ -19,12 +19,24 @@ public class UserRole implements Serializable {
         this.role = role;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    //@Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
     private User user;
 
-    @Id
+  //  @Id
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="role_id")
     private Role role;
