@@ -8,6 +8,7 @@ import com.devopsbuddy.enums.PlanEnum;
 import com.devopsbuddy.enums.RolesEnum;
 import com.devopsbuddy.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,11 +26,22 @@ public class DevopsbuddyApplication implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
 
+	@Value("${webmaster.username}")
+	private String webmasterUserName;
+
+	@Value("${webmaster.password}")
+	private String webmasterPassword;
+
+	@Value("${webmaster.email}")
+	private String webmasterEmail;
+
+
 	@Override
 	public void run(String... strings) throws Exception {
 		Set<UserRole> userRoles = new HashSet<UserRole>();
 		User basicUser = UserUtils.createBasicUser();
-		userRoles.add(new UserRole(basicUser,new Role(RolesEnum.Basic)));
+		basicUser.setPassword(webmasterPassword);
+		userRoles.add(new UserRole(basicUser,new Role(RolesEnum.ADMIN)));
 
 		User user = userService.createUser(basicUser, PlanEnum.BASIC, userRoles);
 	}
