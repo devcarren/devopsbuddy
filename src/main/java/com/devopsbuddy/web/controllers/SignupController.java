@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -55,7 +56,9 @@ public class SignupController {
         return SUBSCRIPTION_VIEW_NAME;
     }
 
+    @RequestMapping(value = SINGUP_URL_MAPPING,method = RequestMethod.POST)
     public String singupPost(@RequestParam(name="planId", required = true) int planId,
+                             @RequestParam(name="file",required = false) MultipartFile file,
                              @ModelAttribute(PAYLOAD_MODEL_KEY_NAME)  ProAccountBasicPayload payload,
                              ModelMap model) throws IOException{
         User user = UserUtils.fromWebUsertoDomain(payload);
