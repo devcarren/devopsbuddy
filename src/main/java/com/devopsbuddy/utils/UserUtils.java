@@ -2,6 +2,8 @@ package com.devopsbuddy.utils;
 
 import com.devopsbuddy.backend.persistence.domain.backend.User;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Carren.Dsouza on 20/04/2017.
  */
@@ -15,7 +17,7 @@ public class UserUtils {
         user.setLastName("Dsdouza");
         user.setCountry("India");
         user.setDescription(" IN india");
-        user.setEmail(" Hello@y.com");
+        user.setEmail("hello@y.com");
         user.setEnabled(true);
         //user.setId(1);
         user.setPassword("Login345");
@@ -24,6 +26,21 @@ public class UserUtils {
         user.setStripeCustomerId("234234234");
         user.setUsername("carren");
         return user;
+
+    }
+
+    public static String createPasswordResetUrl(HttpServletRequest httpServletRequest, long id, String token) {
+        String passwordResetURL=
+                httpServletRequest.getScheme()+"://"+
+                        httpServletRequest.getServerName()+":"+
+                        httpServletRequest.getServerPort()+
+                        httpServletRequest.getContextPath()+
+                        "/changePassword"+
+                        "?id="+id+
+                        "&token="+token;
+
+        return passwordResetURL;
+
 
     }
 }
