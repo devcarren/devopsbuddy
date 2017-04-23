@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] PUBLIC_URLS={
-      "/webjars/**","/forgotpassword/**",
+      "/webjars/**","/forgotpassword/**","/changePassword/**",
             "/css/**","/js/**","/images/**","/","/about/**","/contact/**,/error/**/*",
             "/console/**"
 
