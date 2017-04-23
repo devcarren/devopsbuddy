@@ -3,6 +3,7 @@ package com.devopsbuddy;
 import com.devopsbuddy.backend.persistence.domain.backend.Role;
 import com.devopsbuddy.backend.persistence.domain.backend.User;
 import com.devopsbuddy.backend.persistence.domain.backend.UserRole;
+import com.devopsbuddy.backend.service.PlanService;
 import com.devopsbuddy.backend.service.UserService;
 import com.devopsbuddy.enums.PlanEnum;
 import com.devopsbuddy.enums.RolesEnum;
@@ -35,9 +36,16 @@ public class DevopsbuddyApplication implements CommandLineRunner {
 	@Value("${webmaster.email}")
 	private String webmasterEmail;
 
+	@Autowired
+	private PlanService planService;
+
 
 	@Override
 	public void run(String... strings) throws Exception {
+
+		planService.createPlan(PlanEnum.BASIC.getId());
+		planService.createPlan(PlanEnum.PRO.getId());
+
 		Set<UserRole> userRoles = new HashSet<UserRole>();
 		User basicUser = UserUtils.createBasicUser();
 		basicUser.setPassword(webmasterPassword);
