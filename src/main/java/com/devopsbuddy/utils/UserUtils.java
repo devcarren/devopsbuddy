@@ -1,6 +1,8 @@
 package com.devopsbuddy.utils;
 
 import com.devopsbuddy.backend.persistence.domain.backend.User;
+import com.devopsbuddy.web.domain.frontend.BasicAccountPayload;
+import org.springframework.beans.BeanUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,5 +44,12 @@ public class UserUtils {
         return passwordResetURL;
 
 
+    }
+
+    public static <T extends BasicAccountPayload> User fromWebUsertoDomain(T frontEndPayLoad){
+        User user = new User();
+        BeanUtils.copyProperties(frontEndPayLoad,user);
+        user.setEnabled(true);
+        return user;
     }
 }
