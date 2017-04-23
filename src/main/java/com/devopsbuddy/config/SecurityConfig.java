@@ -1,6 +1,7 @@
 package com.devopsbuddy.config;
 
 import com.devopsbuddy.backend.service.UserSecurityService;
+import com.devopsbuddy.web.controllers.SignupController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private static final String[] PUBLIC_URLS={
-      "/webjars/**","/forgotpassword/**","/changePassword/**",
+      "/webjars/**","/forgotpassword/**","/changePassword/**", SignupController.SINGUP_URL_MAPPING+"/**",
             "/css/**","/js/**","/images/**","/","/about/**","/contact/**,/error/**/*",
             "/console/**"
 

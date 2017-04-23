@@ -9,7 +9,7 @@ public class BasicAccountPayload implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String email;
-    private String userName;
+    private String username;
     private String password;
     private String confirmPassword;
     private String firstName;
@@ -26,12 +26,12 @@ public class BasicAccountPayload implements Serializable {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -94,7 +94,7 @@ public class BasicAccountPayload implements Serializable {
     public String toString() {
         return "BasicAccountPayload{" +
                 "email='" + email + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 ", firstName='" + firstName + '\'' +
